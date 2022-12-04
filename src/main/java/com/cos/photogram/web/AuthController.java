@@ -1,11 +1,18 @@
 package com.cos.photogramstart.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.web.dto.auth.SignupDto;
+
 @Controller
 public class AuthController {
+
+    private final Logger log = LoggerFactory.getLogger(AuthController.class);
 
     // move to sign in page
     @GetMapping("/auth/singin")
@@ -19,7 +26,9 @@ public class AuthController {
     }
 
     @PostMapping("/auth/signup")
-    public String signup() {
+    public String signup(SignupDto signupDto) {
+        User user = signupDto.toEntity();
+        log.info(user.toString());
         return "/auth/signin";
     }
 
