@@ -29,17 +29,20 @@ public class User {
     @Id // setting primary key
     private Integer id; // it will give number whenever data is inserted
 
-    @Column(unique = true)
-    private String username;
+    @Column(unique = true, length = 20, nullable = false)
+    private String username; // user ID
 
+    @Column(nullable = false)
     private String password;
 
+    @Column(nullable = false)
     private String name;
 
     private String website;
 
     private String bio;
 
+    @Column(nullable = false)
     private String email;
 
     private String phone;

@@ -1,14 +1,26 @@
 package com.cos.photostagram.web.dto.auth;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 import com.cos.photostagram.domain.user.User;
 
 import lombok.Data;
 
 @Data // Getter,Setter,toString
 public class SignupDto {
+
+    // using validation, it is different from what we have used from USER DTO.
+    @Size(min = 3, max = 20)
     private String username;
+
+    @NotBlank
     private String password;
+
+    @NotBlank
     private String email;
+
+    @NotBlank
     private String name;
 
     public User toEntity() {
