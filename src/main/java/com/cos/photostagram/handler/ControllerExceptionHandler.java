@@ -14,7 +14,7 @@ import com.cos.photostagram.web.dto.auth.CMRespDto;
 public class ControllerExceptionHandler {
 
     @ExceptionHandler(CustomValidationException.class)
-    public CMRespDto<Map<String, String>> validationException(CustomValidationException e) {
+    public CMRespDto<?> validationException(CustomValidationException e) {
         return new CMRespDto<>(-1, e.getMessage(), e.getErrorMap()); // if it is succedded 1, fail -1. it is just http
                                                                      // protocol.
     }
