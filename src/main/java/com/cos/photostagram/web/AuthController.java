@@ -10,11 +10,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photostagram.domain.user.User;
+import com.cos.photostagram.handler.ex.CustomValidationException;
 import com.cos.photostagram.service.AuthService;
 import com.cos.photostagram.web.dto.auth.SignupDto;
 
@@ -23,6 +25,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor // construct objects for final variables
 @Controller
 public class AuthController {
+
+    @ExceptionHandler(CustomValidationException.class) // annotation form that we should follow to use exception handler
+    public Map<String, String> validationException(CustomValidationException e) {
+        return e.getErrorMap();
+    }
 
     private final Logger log = LoggerFactory.getLogger(AuthController.class);
 
@@ -45,17 +52,15 @@ public class AuthController {
     }
 
     @PostMapping("/auth/signup")
-    public @ResponseBody String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
+    public String signup(@Valid SignupDto signupDto, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             Map<String, String> errorMap = new HashMap<>();
             for (FieldError error : bindingResult.getFieldErrors()) {
                 errorMap.put(error.getField(), error.getDefaultMessage());
-                System.out.println("=================================");
                 System.out.println(error.getDefaultMessage());
-                System.out.println("=================================");
             }
-            return "error";
+            throw new CustomValidationException("validation fail", errorMap);
         } else {
 
             User user = signupDto.toEntity();
