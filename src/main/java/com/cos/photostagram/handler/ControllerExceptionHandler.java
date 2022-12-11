@@ -20,3 +20,5 @@ public class ControllerExceptionHandler {
     }
 
 }
+// if we are using geneirc type, we can return any type of error message, it
+// doesn't have to be string type. It can be int or what ever.
