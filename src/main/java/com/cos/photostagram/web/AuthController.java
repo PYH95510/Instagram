@@ -25,11 +25,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor // construct objects for final variables
 @Controller
 public class AuthController {
-
-    @ExceptionHandler(CustomValidationException.class) // annotation form that we should follow to use exception handler
-    public Map<String, String> validationException(CustomValidationException e) {
-        return e.getErrorMap();
-    }
+    // annotation form that we should follow to use exception handler, if we are
+    // using this, all the exceptions, inside the Runtime exceptions will be taken
+    // to here
 
     private final Logger log = LoggerFactory.getLogger(AuthController.class);
 
