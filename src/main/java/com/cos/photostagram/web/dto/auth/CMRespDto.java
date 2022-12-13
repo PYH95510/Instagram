@@ -22,6 +22,6 @@ public class CMRespDto<T> {
  * Why are we using generic T here? we cannot always response to error data
  * type. Sometimes we need to response to member data and various
  * data. In that case we cannot always change the CMRespDto. To consider all of
- * those cases, the best way to address is using generics
+ * those cases, the best way to address is using generics.
  * 
  */
