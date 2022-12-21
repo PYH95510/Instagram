@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()// permit all
                 .and() // and
                 .formLogin() // if sign in request happens
-                .loginPage("/auth/signin") // move to signin page
+                .loginPage("/auth/signin") // move to signin page and request Get
                 .loginProcessingUrl("/auth/signin") // process /auth/signin POST
                 .defaultSuccessUrl("/"); // if it signin is succedded, default success url is /
     }
