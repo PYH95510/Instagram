@@ -6,4 +6,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     // technically we should use @Repository, but JpaRepository is already
     // @Repository and we are extending it, so
     // we do not need to do so and this is automatically registerd to IoC container.
+    User findByUsername(String username);
+
 }
