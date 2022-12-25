@@ -11,4 +11,12 @@ public class UserController {
     public String profile(@PathVariable Integer id) {
         return "user/profile";
     }
+
+    @GetMapping("/user/{id}/update")
+    public String update(@PathVariable Integer id) {
+        return "user/update";
+    }
+
+    // spring security automatically has sign in and sign out function
+
 }

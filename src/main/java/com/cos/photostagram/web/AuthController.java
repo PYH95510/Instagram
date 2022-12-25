@@ -39,9 +39,9 @@ public class AuthController {
     private final AuthService authService; // same di as above
 
     // move to sign in page
-    @GetMapping("/auth/singin")
+    @GetMapping("/auth/signin")
     public String signinForm() {
-        return ".auth/signin";
+        return "/auth/signin";
     }
 
     @GetMapping("/auth/signup")
